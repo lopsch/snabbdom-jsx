@@ -2,7 +2,7 @@
   "name": "snabbdom-jsx-pragma",
   "version": "0.1.0",
   "author": "Daniel Lopes <lopsch@googlemail.com>",
-  "description": "Write snabbdom VNodes using JSX and Babel",
+  "description": "Transforms Babel/JSX into Snabbdom Virtual DOM",
   "main": "lib/index.js",
   "license": "MIT",
   "files": [
