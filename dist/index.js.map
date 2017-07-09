@@ -1,1 +1,0 @@
-{"version":3,"sources":["../src/index.js"],"names":["tryFlatten","SnabbdomComponent"],"mappings":";;;;;;;AAAA;;;;AACA;;AACA;;;;;;;QAGSA,U;QAAYC,iB","file":"index.js","sourcesContent":["import html from './jsx'\nimport { tryFlatten } from './utils'\nimport SnabbdomComponent from './SnabbdomComponent'\n\nexport default html\nexport { tryFlatten, SnabbdomComponent }\n"]}
