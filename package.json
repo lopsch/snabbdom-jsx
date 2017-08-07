@@ -1,6 +1,6 @@
 {
   "name": "snabbdom-jsx-pragma",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "author": "Daniel Lopes <lopsch@googlemail.com>",
   "description": "Transforms Babel/JSX into Snabbdom Virtual DOM",
   "main": "lib/index.js",
