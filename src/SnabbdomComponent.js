@@ -1,7 +1,7 @@
 export default class SnabbdomComponent {
-  constructor (_props, _children) {
-    this.props = _props || {}
-    this.children = _children || []
+  constructor (props_ = {}, children_ = []) {
+    this.props = props_
+    this.children = children_
   }
 }
 

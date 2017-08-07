@@ -58,16 +58,16 @@ function buildFromStringTag (tag, attrs, children) {
 
 function buildFromComponent (tag, attrs, children) {
   let res
-  const _isClass = isClass(tag)
-  const _isFunc = isFunc(tag)
-  const _hasRender = isObj(tag) && typeof tag.render === 'function'
+  const isClass_ = isClass(tag)
+  const isFunc_ = isFunc(tag)
+  const hasRender_ = isObj(tag) && typeof tag.render === 'function'
 
-  if (_isClass) {
+  if (isClass_) {
     const Tag = tag
     res = new Tag(attrs, children).render()
-  } else if (_hasRender) {
+  } else if (hasRender_) {
     res = tag.render(attrs, children)
-  } else if (_isFunc) {
+  } else if (isFunc_) {
     res = tag(attrs, children)
   } else {
     console.error(
