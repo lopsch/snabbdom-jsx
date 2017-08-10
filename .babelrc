@@ -7,21 +7,9 @@
     [
       "transform-react-jsx",
       {
-        "pragma": "html"
+        "pragma": "jsx.html"
       }
     ],
     "transform-object-rest-spread"
-  ],
-  "env": {
-    "ci": {
-      "plugins": [
-        "istanbul"
-      ]
-    },
-    "min": {
-      "presets": [
-        "babili"
-      ]
-    }
-  }
+  ]
 }

@@ -23,6 +23,9 @@ mochawesome
 # JSDoc directory
 jsdoc
 
+# Analyzer directory
+stats
+
 # nyc test coverage
 .nyc_output
 
@@ -58,7 +61,8 @@ jspm_packages
 .DS_Store
 
 # Build folder
-dist
+# dist
+# lib
 
 # Backup files
 *~
