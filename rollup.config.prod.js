@@ -4,34 +4,31 @@ import pkg from './package.json'
 import babel from 'rollup-plugin-babel'
 import progress from 'rollup-plugin-progress'
 import visualizer from 'rollup-plugin-visualizer'
-import multiEntry from 'rollup-plugin-multi-entry'
-import babelConfig from './src/.babel.config'
-import entryCofig from './src/.entry.config'
+import rolluprc from './.rolluprc.json'
 
 export default [
   {
-    entry: entryCofig,
+    entry: rolluprc.entryConfig,
     dest: pkg.browser,
     format: 'umd',
-    moduleName: 'storageify',
+    moduleName: 'snabbdom-jsx-pragma',
     plugins: [
       progress({ clearLine: false }),
       resolve(),
       commonjs(),
-      babel(babelConfig),
-      multiEntry(),
+      babel(rolluprc.babelConfig),
       visualizer({ filename: './stats/index.html' })
     ],
     sourceMap: true,
     exports: 'named'
   },
   {
-    entry: entryCofig,
+    entry: rolluprc.entryConfig,
     targets: [
       { dest: pkg.module, format: 'es' },
       { dest: pkg.main, format: 'cjs' }
     ],
-    plugins: [progress({ clearLine: false }), babel(babelConfig), multiEntry()],
+    plugins: [progress({ clearLine: false }), babel(rolluprc.babelConfig)],
     sourceMap: true,
     exports: 'named'
   }
