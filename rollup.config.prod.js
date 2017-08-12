@@ -6,6 +6,9 @@ import progress from 'rollup-plugin-progress'
 import visualizer from 'rollup-plugin-visualizer'
 import rolluprc from './.rolluprc.json'
 
+const babelConfigUMD = rolluprc.babelConfig
+babelConfigUMD.exclude = []
+
 export default [
   {
     entry: rolluprc.entryConfig,
@@ -16,7 +19,7 @@ export default [
       progress({ clearLine: false }),
       resolve(),
       commonjs(),
-      babel(rolluprc.babelConfig),
+      babel(babelConfigUMD),
       visualizer({ filename: './stats/index.html' })
     ],
     sourceMap: true,
