@@ -1,5 +1,5 @@
 import Benchmark from 'benchmark'
-import { tryFlatten, isSvg, normalizeAttrs } from '../lib/index.esm'
+import { tryFlatten, isSvg, normalizeAttrs } from '../lib'
 
 const fn = function () {}
 const toNormalize = {
