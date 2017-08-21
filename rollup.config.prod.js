@@ -1,22 +1,44 @@
 import pkg from './package.json'
 import babel from 'rollup-plugin-babel'
+import resolve from 'rollup-plugin-node-resolve'
+import commonjs from 'rollup-plugin-commonjs'
 import progress from 'rollup-plugin-progress'
+import eslint from 'rollup-plugin-eslint'
 import minify from 'rollup-plugin-babel-minify'
 import rolluprc from './.rolluprc.json'
 
 export default [
   {
-    entry: rolluprc.entryConfig,
-    targets: [
-      { dest: pkg.module, format: 'es' },
-      { dest: pkg.main, format: 'cjs' }
+    input: rolluprc.entryConfig,
+    output: [
+      {
+        file: pkg.browser,
+        format: 'umd',
+        name: 'snabbdom-jsx-pragma',
+        exports: 'named',
+        sourcemap: true
+      }
     ],
     plugins: [
       progress({ clearLine: false }),
+      eslint({ throwOnError: true, throwOnWarning: true }),
+      resolve(),
+      commonjs(),
       babel(rolluprc.babelConfig),
       minify()
+    ]
+  },
+  {
+    input: rolluprc.entryConfig,
+    output: [
+      { file: pkg.module, format: 'es', exports: 'named', sourcemap: true },
+      { file: pkg.main, format: 'cjs', exports: 'named', sourcemap: true }
     ],
-    sourceMap: true,
-    exports: 'named'
+    plugins: [
+      progress({ clearLine: false }),
+      eslint({ throwOnError: true, throwOnWarning: true }),
+      babel(rolluprc.babelConfig),
+      minify()
+    ]
   }
 ]
