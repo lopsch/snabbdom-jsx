@@ -1,6 +1,6 @@
 import html, { normalizeAttrs } from './jsx'
 import { tryFlatten, isPrimitive, isClass, isFunc, isObj, isSvg } from './utils'
-import SnabbdomComponent from './SnabbdomComponent'
+import SnabbdomComponent from './component'
 
 export {
   normalizeAttrs,
