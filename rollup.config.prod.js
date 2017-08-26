@@ -24,6 +24,25 @@ export default [
       eslint({ throwOnError: true, throwOnWarning: true }),
       resolve(),
       commonjs(),
+      babel(rolluprc.babelConfig)
+    ]
+  },
+  {
+    input: rolluprc.entryConfig,
+    output: [
+      {
+        file: pkg.min,
+        format: 'umd',
+        name: 'snabbdom-jsx-pragma',
+        exports: 'named',
+        sourcemap: true
+      }
+    ],
+    plugins: [
+      progress({ clearLine: false }),
+      eslint({ throwOnError: true, throwOnWarning: true }),
+      resolve(),
+      commonjs(),
       babel(rolluprc.babelConfig),
       minify()
     ]
@@ -37,8 +56,7 @@ export default [
     plugins: [
       progress({ clearLine: false }),
       eslint({ throwOnError: true, throwOnWarning: true }),
-      babel(rolluprc.babelConfig),
-      minify()
+      babel(rolluprc.babelConfig)
     ]
   }
 ]
