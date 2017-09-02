@@ -80,7 +80,7 @@ function buildFromComponent (tag, attrs, children) {
     )
     throw new Error(
       `JSX tag must be either a 'string', a 'function' or
-      an 'object'/a 'class' with either a 'view' or a 'render' method.`
+      an 'object'/a 'class' with a 'render' method.`
     )
   }
 

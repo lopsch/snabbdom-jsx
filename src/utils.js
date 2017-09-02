@@ -34,7 +34,7 @@ export function isPrimitive (val) {
 export function isClass (val) {
   return (
     isFunc(val) &&
-    !!val.prototype.snabbdomComponent &&
+    val.prototype.snabbdomComponent === true &&
     typeof val.prototype.render === 'function'
   )
 }
