@@ -3,6 +3,7 @@ import { tryFlatten, isPrimitive, isClass, isFunc, isObj, isSvg } from './utils'
 const DEF_NS = 'props'
 const DEF_MODS = ['hook', 'on', 'style', 'class', 'props', 'attrs', 'dataset']
 const SVG_NS = 'http://www.w3.org/2000/svg'
+const RES_KEYS = ['key', 'classNames', 'sel', 'id']
 
 export function normalizeAttrs (attrs) {
   const map = {}
@@ -10,13 +11,13 @@ export function normalizeAttrs (attrs) {
   for (let key in attrs) {
     if (DEF_MODS.includes(key)) {
       map[key] = attrs[key]
-    } else if (key !== 'key' && key !== 'classNames' && key !== 'selector') {
+    } else if (!RES_KEYS.includes(key)) {
       const idx = key.indexOf('-')
       if (idx !== -1) {
         const nsKey = key.substring(0, idx)
         const attrsKey = key.substring(idx + 1)
         addAttr(nsKey, attrsKey, attrs[key])
-      } else if (!map[key]) {
+      } else if (map[key] == null) {
         addAttr(DEF_NS, key, attrs[key])
       }
     }
@@ -32,14 +33,15 @@ export function normalizeAttrs (attrs) {
 }
 
 function buildFromStringTag (tag, attrs, children) {
-  if (attrs.selector && attrs.selector !== '') {
-    tag = tag + attrs.selector
+  if (typeof attrs.id === 'string' && attrs.id !== '') {
+    tag = tag + '#' + attrs.id
+  } else if (typeof attrs.sel === 'string' && attrs.sel !== '') {
+    tag = tag + attrs.sel
   }
 
   if (
-    attrs.classNames &&
-    ((Array.isArray(attrs.classNames) && attrs.classNames.length !== 0) ||
-      attrs.classNames !== '')
+    (typeof attrs.classNames === 'string' && attrs.classNames !== '') ||
+    (Array.isArray(attrs.classNames) && attrs.classNames.length !== 0)
   ) {
     const cns = attrs.classNames
     tag =
@@ -84,7 +86,7 @@ function buildFromComponent (tag, attrs, children) {
     )
   }
 
-  if (res) {
+  if (res != null) {
     res.key = attrs.key
   }
 
@@ -96,7 +98,7 @@ function mapPropsToAttrs (data) {
   const props = data.props || (data.props = {})
 
   for (let key in props) {
-    if (attrs[key] === undefined) {
+    if (attrs[key] == null) {
       attrs[key] = props[key]
       delete props[key]
     }

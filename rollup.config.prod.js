@@ -22,9 +22,9 @@ export default [
     plugins: [
       progress({ clearLine: false }),
       eslint({ throwOnError: true, throwOnWarning: true }),
+      babel(rolluprc.babelConfig),
       resolve(),
-      commonjs(),
-      babel(rolluprc.babelConfig)
+      commonjs()
     ]
   },
   {
@@ -41,9 +41,9 @@ export default [
     plugins: [
       progress({ clearLine: false }),
       eslint({ throwOnError: true, throwOnWarning: true }),
+      babel(rolluprc.babelConfig),
       resolve(),
       commonjs(),
-      babel(rolluprc.babelConfig),
       minify()
     ]
   },

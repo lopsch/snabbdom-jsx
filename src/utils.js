@@ -26,8 +26,7 @@ export function isPrimitive (val) {
     typeof val === 'number' ||
     typeof val === 'boolean' ||
     typeof val === 'symbol' ||
-    val === null ||
-    val === undefined
+    val == null
   )
 }
 
@@ -49,7 +48,6 @@ export function isObj (val) {
 
 export function isSvg (val) {
   return (
-    val &&
     typeof val === 'string' &&
     val[0] === 's' &&
     val[1] === 'v' &&

@@ -257,7 +257,7 @@ describe(`normalizeAttrs()`, () => {
       'myAttrNS-second': fn,
       key: 'not_included',
       classNames: ['not_included'],
-      selector: 'not_included'
+      id: 'not_included'
     }
     const normalized = normalizeAttrs(toNormalize)
     const expected = {
@@ -335,7 +335,7 @@ describe(`html()`, () => {
       'myAttrNS-second': fn,
       key: 'key',
       classNames: 'class2 class3',
-      selector: '#id.class1'
+      id: 'id.class1'
     }
     const vnode = <div {...attrs} />
 
@@ -367,14 +367,10 @@ describe(`html()`, () => {
       'myAttrNS-second': fn,
       key: 'key',
       classNames: ['class2', 'class3'],
-      selector: '#id.class1'
+      id: 'id.class1'
     }
     const child = 'Hello, World!'
-    const vnode = (
-      <div {...attrs}>
-        {child}
-      </div>
-    )
+    const vnode = <div {...attrs}>{child}</div>
 
     expect(vnode.key).to.equal('key')
     expect(vnode.sel).to.equal('div#id.class1.class2.class3')
@@ -404,14 +400,10 @@ describe(`html()`, () => {
       'myAttrNS-second': fn,
       key: 'key',
       classNames: ['class2', 'class3'],
-      selector: '#id.class1'
+      id: 'id.class1'
     }
     const child = <div>Hello, World!</div>
-    const vnode = (
-      <div {...attrs}>
-        {child}
-      </div>
-    )
+    const vnode = <div {...attrs}>{child}</div>
     const vnodeChild = vnode.children[0]
 
     expect(vnode.key).to.equal('key')
@@ -427,10 +419,7 @@ describe(`html()`, () => {
 
   it("should build when provided 'tag', 'attrs' and 'children' ('tag' component with no child)", () => {
     const fn = function () {}
-    const Component = (props, children) =>
-      <div {...props}>
-        {children}
-      </div>
+    const Component = (props, children) => <div {...props}>{children}</div>
     const attrs = {
       hook: { insert: fn },
       'hook-destroy': fn,
@@ -451,7 +440,7 @@ describe(`html()`, () => {
       'myAttrNS-second': fn,
       key: 'key',
       classNames: ['class2', 'class3'],
-      selector: '#id.class1'
+      id: 'id.class1'
     }
     const vnode = <Component {...attrs} />
 
@@ -463,10 +452,7 @@ describe(`html()`, () => {
 
   it("should build when provided 'tag', 'attrs' and 'children' ('tag' component with text child)", () => {
     const fn = function () {}
-    const Component = (props, children) =>
-      <div {...props}>
-        {children}
-      </div>
+    const Component = (props, children) => <div {...props}>{children}</div>
     const attrs = {
       hook: { insert: fn },
       'hook-destroy': fn,
@@ -487,14 +473,10 @@ describe(`html()`, () => {
       'myAttrNS-second': fn,
       key: 'key',
       classNames: ['class2', 'class3'],
-      selector: '#id.class1'
+      id: 'id.class1'
     }
     const child = 'Hello, World!'
-    const vnode = (
-      <Component {...attrs}>
-        {child}
-      </Component>
-    )
+    const vnode = <Component {...attrs}>{child}</Component>
 
     expect(vnode.key).to.equal('key')
     expect(vnode.sel).to.equal('div#id.class1.class2.class3')
@@ -504,10 +486,7 @@ describe(`html()`, () => {
 
   it("should build when provided 'tag', 'attrs' and 'children' ('tag' component with vnode child)", () => {
     const fn = function () {}
-    const Component = (props, children) =>
-      <div {...props}>
-        {children}
-      </div>
+    const Component = (props, children) => <div {...props}>{children}</div>
     const attrs = {
       hook: { insert: fn },
       'hook-destroy': fn,
@@ -528,14 +507,10 @@ describe(`html()`, () => {
       'myAttrNS-second': fn,
       key: 'key',
       classNames: ['class2', 'class3'],
-      selector: '#id.class1'
+      id: 'id.class1'
     }
     const child = <div>Hello, World!</div>
-    const vnode = (
-      <Component {...attrs}>
-        {child}
-      </Component>
-    )
+    const vnode = <Component {...attrs}>{child}</Component>
     const vnodeChild = vnode.children[0]
 
     expect(vnode.key).to.equal('key')
@@ -553,11 +528,7 @@ describe(`html()`, () => {
     const fn = function () {}
     const Component = class Component extends SnabbdomComponent {
       render () {
-        return (
-          <div {...this.props}>
-            {this.children}
-          </div>
-        )
+        return <div {...this.props}>{this.children}</div>
       }
     }
     const attrs = {
@@ -580,7 +551,7 @@ describe(`html()`, () => {
       'myAttrNS-second': fn,
       key: 'key',
       classNames: ['class2', 'class3'],
-      selector: '#id.class1'
+      id: 'id.class1'
     }
     const vnode = <Component {...attrs} />
 
@@ -594,11 +565,7 @@ describe(`html()`, () => {
     const fn = function () {}
     const Component = class Component extends SnabbdomComponent {
       render () {
-        return (
-          <div {...this.props}>
-            {this.children}
-          </div>
-        )
+        return <div {...this.props}>{this.children}</div>
       }
     }
     const attrs = {
@@ -621,14 +588,10 @@ describe(`html()`, () => {
       'myAttrNS-second': fn,
       key: 'key',
       classNames: ['class2', 'class3'],
-      selector: '#id.class1'
+      id: 'id.class1'
     }
     const child = 'Hello, World!'
-    const vnode = (
-      <Component {...attrs}>
-        {child}
-      </Component>
-    )
+    const vnode = <Component {...attrs}>{child}</Component>
 
     expect(vnode.key).to.equal('key')
     expect(vnode.sel).to.equal('div#id.class1.class2.class3')
@@ -640,11 +603,7 @@ describe(`html()`, () => {
     const fn = function () {}
     const Component = class Component extends SnabbdomComponent {
       render () {
-        return (
-          <div {...this.props}>
-            {this.children}
-          </div>
-        )
+        return <div {...this.props}>{this.children}</div>
       }
     }
     const attrs = {
@@ -667,14 +626,10 @@ describe(`html()`, () => {
       'myAttrNS-second': fn,
       key: 'key',
       classNames: ['class2', 'class3'],
-      selector: '#id.class1'
+      id: 'id.class1'
     }
     const child = <div>Hello, World!</div>
-    const vnode = (
-      <Component {...attrs}>
-        {child}
-      </Component>
-    )
+    const vnode = <Component {...attrs}>{child}</Component>
     const vnodeChild = vnode.children[0]
 
     expect(vnode.key).to.equal('key')
@@ -698,7 +653,7 @@ describe(`html()`, () => {
 
     const vnodeAttrs = { viewBox: '0 0 24 24' }
     const vnode = (
-      <svg selector='#svg.svg' classNames='svgClass' {...vnodeAttrs}>
+      <svg id='svg.svg' classNames='svgClass' {...vnodeAttrs}>
         {child}
       </svg>
     )
